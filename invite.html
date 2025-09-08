@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers' Day Celebration Invitation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fdfaf6;
+            --card-bg: #fff;
+            --primary-text: #3a3a3a;
+            --accent-gold: #c5a47e;
+            --accent-dark-blue: #001f3f;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem; /* Adjusted for mobile */
+            cursor: default;
+        }
+
+        /* The main invitation card */
+        .invitation-card {
+            background-color: var(--card-bg);
+            max-width: 900px;
+            width: 100%;
+            margin: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            border: 1px solid rgba(0,0,0,0.05);
+            overflow: hidden;
+            position: relative;
+            padding: 2.5rem 1.5rem; /* Adjusted padding for mobile */
+            text-align: center;
+            transition: all 0.4s ease-in-out;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        @media (min-width: 768px) {
+            .invitation-card {
+                 padding: 3rem; /* Restore larger padding for desktops */
+            }
+             .invitation-card:hover {
+                transform: translateY(-5px) scale(1.01);
+                box-shadow: 0 25px 45px var(--shadow-color);
+            }
+        }
+
+
+        /* Decorative Elements */
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-dark-blue));
+        }
+
+        /* Header Styling */
+        .header h1 {
+            width: 100%;
+        }
+        
+        .header h1 span {
+            display: inline-block;
+            opacity: 0;
+            animation: animate-letter 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+
+
+        .header p {
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+        }
+        
+        .divider {
+            border: none;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 31, 63, 0), var(--accent-dark-blue), rgba(0, 31, 63, 0));
+            margin: 2rem 0;
+        }
+
+        .content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .details-section {
+            display: flex;
+            flex-direction: column; /* Mobile-first layout */
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            background-color: rgba(240, 240, 240, 0.3);
+            border: 1px solid rgba(197, 164, 126, 0.3);
+            border-radius: 15px;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            background-color: var(--accent-dark-blue);
+            color: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 31, 63, 0.15);
+        }
+        
+        .detail-item h3 {
+            font-family: 'Merriweather', serif;
+            font-weight: 400;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .detail-item:hover h3 {
+             color: #fff;
+        }
+
+        .detail-item p {
+            font-size: 1rem;
+            font-weight: 300;
+        }
+        
+        /* NEW Countdown Timer styling */
+        .countdown {
+            margin-bottom: 2rem;
+        }
+        
+        .countdown h2 {
+             font-family: 'Dancing Script', cursive;
+             font-size: 2rem;
+             color: var(--accent-dark-blue);
+             margin-bottom: 1.5rem;
+        }
+
+        #timer {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .timer-unit {
+            background-color: var(--accent-dark-blue);
+            color: white;
+            border-radius: 10px;
+            padding: 0.75rem;
+            min-width: 70px;
+            box-shadow: 0 4px 10px rgba(0, 31, 63, 0.3);
+        }
+        
+        .timer-unit span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .timer-unit p {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* Photo Gallery Styling */
+        .gallery h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: var(--accent-dark-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .image-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns for mobile */
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .memory-image {
+            background-color: #fff;
+            padding: 8px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0; /* Initially hidden for animation */
+            transform: translateY(20px);
+        }
+
+        .memory-image.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .memory-image:hover {
+            transform: scale(1.1) rotate(0deg) !important;
+            z-index: 10;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .memory-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 2px;
+        }
+
+        /* Footer */
+        .footer p {
+            font-style: italic;
+            font-size: 1rem;
+            color: var(--primary-text);
+        }
+        
+        .footer .stream {
+            margin-top: 0.5rem;
+            font-weight: bold;
+            color: var(--accent-dark-blue);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes animate-letter {
+            0% { opacity: 0; transform: translateY(30px) scale(0.8) rotate(20deg); }
+            100% { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+        }
+        
+        /* Tablet and Desktop Styles */
+        @media (min-width: 600px) {
+            .header h1 {
+                font-size: 4rem;
+            }
+            .header p, .content p, .footer p {
+                font-size: 1.1rem;
+            }
+             .image-container {
+                grid-template-columns: repeat(5, 1fr); /* 5 columns for larger screens */
+            }
+             .details-section {
+                flex-direction: row;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="invitation-card">
+        <header class="header">
+            <h1>Happy Teachers' Day</h1>
+            <p>An Ode to Our Mentors</p>
+        </header>
+
+        <section class="content">
+            <p>In honor of your invaluable guidance, unwavering support, and the wisdom you share, we, the students of the B.Voc stream, cordially invite you to a special celebration dedicated to you.</p>
+        </section>
+        
+        <hr class="divider">
+
+        <section class="details-section">
+            <div class="detail-item">
+                <h3>Date & Time</h3>
+                <p>13th September 2025, 11 AM</p>
+            </div>
+            <div class="detail-item">
+                <h3>Venue</h3>
+                <p>Seminar Hall, Asutosh College Second Campus</p>
+            </div>
+        </section>
+        
+        <!-- NEW Countdown Timer -->
+        <section class="countdown">
+             <h2>The Celebration Begins In</h2>
+             <div id="timer">
+                <div class="timer-unit"><span id="days">0</span><p>Days</p></div>
+                <div class="timer-unit"><span id="hours">0</span><p>Hours</p></div>
+                <div class="timer-unit"><span id="minutes">0</span><p>Minutes</p></div>
+                <div class="timer-unit"><span id="seconds">0</span><p>Seconds</p></div>
+             </div>
+        </section>
+
+        <hr class="divider">
+
+        <section class="gallery">
+            <h2>A Trip Down Memory Lane</h2>
+            <div class="image-container">
+                <div class="memory-image"><img src="F:\html & css files\teachers day invitation\WhatsApp Image 2025-09-08 at 1.16.58 AM.jpeg" alt="B.Voc Stream Memory 1"></div>
+                <div class="memory-image"><img src="F:\html & css files\teachers day invitation\WhatsApp Image 2025-09-08 at 1.16.59 AM.jpeg" alt="B.Voc Stream Memory 2"></div>
+                <div class="memory-image"><img src="F:\html & css files\teachers day invitation\WhatsApp Image 2025-09-08 at 1.17.00 AM.jpeg" alt="B.Voc Stream Memory 3"></div>
+                <div class="memory-image"><img src="F:\html & css files\teachers day invitation\WhatsApp Image 2025-09-08 at 1.33.35 AM.jpeg" alt="B.Voc Stream Memory 4"></div>
+                <div class="memory-image"><img src="WhatsApp Image 2025-09-08 at 1.33.36 AM.jpeg" alt="B.Voc Stream Memory 5"></div>
+                <div class="memory-image"><img src="WhatsApp Image 2025-09-08 at 1.33.37 AM (1).jpeg" alt="B.Voc Stream Memory 6"></div>
+                <div class="memory-image"><img src="F:\html & css files\teachers day invitation\WhatsApp Image 2025-09-08 at 1.33.37 AM (2).jpeg" alt="B.Voc Stream Memory 7"></div>
+                <div class="memory-image"><img src="F:\html & css files\teachers day invitation\WhatsApp Image 2025-09-08 at 1.33.37 AM.jpeg" alt="B.Voc Stream Memory 8"></div>
+                <div class="memory-image"><img src="F:\html & css files\teachers day invitation\WhatsApp Image 2025-09-08 at 1.33.38 AM.jpeg" alt="B.Voc Stream Memory 9"></div>
+                <div class="memory-image"><img src="F:\html & css files\teachers day invitation\WhatsApp Image 2025-09-08 at 1.16.59 AM.jpeg" alt="B.Voc Stream Memory 10"></div>
+            </div>
+        </section>
+
+        <hr class="divider">
+
+        <footer class="footer">
+            <p>With warm regards & deepest respect,</p>
+            <p class="stream">Your Students of the B.Voc Stream</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // --- Animated Heading Logic ---
+            const heading = document.querySelector('.header h1');
+            const text = heading.textContent;
+            const newText = text.split('').map((char, index) => {
+                const delay = index * 50;
+                return `<span style="animation-delay: ${delay}ms;">${char === ' ' ? '&nbsp;' : char}</span>`;
+            }).join('');
+            heading.innerHTML = newText;
+            
+            // --- Countdown Timer Logic ---
+            const countdownDate = new Date("September 13, 2025 11:00:00").getTime();
+
+            const timerInterval = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+
+                if (distance < 0) {
+                    clearInterval(timerInterval);
+                    document.querySelector('.countdown').innerHTML = '<h2>The Celebration has begun!</h2>';
+                }
+            }, 1000);
+
+
+            // --- Staggered Image Gallery Animation ---
+            const images = document.querySelectorAll('.memory-image');
+            images.forEach((image, index) => {
+                const rotation = Math.random() * 10 - 5; 
+                image.style.transform = `rotate(${rotation}deg) translateY(20px)`;
+
+                setTimeout(() => {
+                    image.classList.add('fade-in');
+                    image.style.transform = `rotate(${rotation}deg) translateY(0)`;
+                }, 1000 + (index * 100)); 
+            });
+        });
+    </script>
+</body>
+</html>
